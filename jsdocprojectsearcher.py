@@ -19,7 +19,7 @@ def checkjsfile(fname):
         return True
     return False
 
-def dfsjs(fname):
+def walkjs(fname):
     for dpath,dirs,files in os.walk('pretraindata'):
         for f in files:
             if f.endswith('.js') and os.path.exists(os.path.join(dpath,f)):
@@ -57,10 +57,10 @@ def getredundancyname(des_path,redunnum):
 def checkproject(fname):
     createdir('pretraindata')
     unzipfile(fname)
-    dfsjs(fname)
+    walkjs(fname)
     rmdir('pretraindata')
 
-def dfsmain():
+def walkmain():
     createdir('puredata')
     createdir('jsdocdata')
     for f in os.listdir('downloaded'):
@@ -92,4 +92,4 @@ if __name__ == '__main__':
     logger.addHandler(fh)
     logger.addHandler(sh) 
     logger.setLevel(logging.INFO) 
-    dfsmain()
+    walkmain()
